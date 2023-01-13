@@ -13,9 +13,15 @@ const Formulario = () => {
         'Mobile',
         'Inovação e Gestão'
     ]
+
+
+    const aoSalvar=(evento)=>{
+        console.log("Form foi submetido");
+    }
+
     return (
         <section className="formulario">
-            <form>
+            <form onSubmit={aoSalvar}>
                 <h2>Preencha os dados para criar o card do colaborador</h2>
                 <CampoTexto label="Nome" placeholder="Digite seu Nome" />
                 <CampoTexto label="Cargo" placeholder="Digite seu Cargo" />

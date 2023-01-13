@@ -1,3 +1,0 @@
-Projeto React 
-para estudos
-
