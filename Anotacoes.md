@@ -23,7 +23,7 @@ As Arrow Functions são uma maneira mais simples ou menor de construir funções
 const funct1 = (param) => {}
 ~~~
 
-###Por que ela se chama Arrow Function?
+### Por que ela se chama Arrow Function?
 
 Porque a definimos utilizando uma arrow. É a mesma funcionalidade, mas com uma arrow, existe apenas uma particularidade que vou mostrar para você. Quando temos algo com um cenário acima, chamamos essa arrow function de statement, ou seja, ela tem instruções dentro do corpo dela, por isso ela tem a chave. Temos um outro tipo de arrow function que é a seguinte:
 
@@ -31,4 +31,18 @@ Porque a definimos utilizando uma arrow. É a mesma funcionalidade, mas com uma 
 const2 = function (valor) {
   return valor * 2
 }
+~~~
+
+Se quisermos criar uma Arrow Function nesse sentido, precisamos passar também o valor, mas podemos fazer apenas isso:
+
+~~~javascript
+const funct2 = (valor) => valor * 2
+~~~
+
+Chamamos esse tipo de Expression Body, afinal o corpo dela é uma expressão. Perceba como fica bem mais simples. Vamos supor que eu tenha um vetor e eu quero fazer um map:
+
+~~~javascript
+const vetor = [1, 2, 3]
+
+vetor.map((valor) => valor * 2)
 ~~~
