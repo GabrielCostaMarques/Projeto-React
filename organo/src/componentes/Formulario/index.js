@@ -16,6 +16,7 @@ const Formulario = () => {
 
 
     const aoSalvar=(evento)=>{
+        evento.preventDefault()
         console.log("Form foi submetido");
     }
 
@@ -23,10 +24,10 @@ const Formulario = () => {
         <section className="formulario">
             <form onSubmit={aoSalvar}>
                 <h2>Preencha os dados para criar o card do colaborador</h2>
-                <CampoTexto label="Nome" placeholder="Digite seu Nome" />
-                <CampoTexto label="Cargo" placeholder="Digite seu Cargo" />
-                <CampoTexto label="Imagem" placeholder="Digite o endereço da imagem" />
-                <ListaSuspensa label ="Times" itens={times}></ListaSuspensa>
+                <CampoTexto obrigatorio={true} label="Nome" placeholder="Digite seu Nome" />
+                <CampoTexto obrigatorio={true} label="Cargo" placeholder="Digite seu Cargo" />
+                <CampoTexto obrigatorio={true} label="Imagem" placeholder="Digite o endereço da imagem" />
+                <ListaSuspensa obrigatorio={true} label ="Times" itens={times}></ListaSuspensa>
                 <Botao>Criar Card</Botao>
             </form>
         </section>
