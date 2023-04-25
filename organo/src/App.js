@@ -1,14 +1,12 @@
-import Banner from './componentes/Banner/banner';
-import Formulario from './componentes/Formulario';
-
+import Banner from './componentes/Banner';
+import Formulario from './componentes/Forms';
 
 function App() {
   return (
     <div className="App">
-      <Banner></Banner>
-      <Formulario></Formulario>
+      <Banner/>
+      <Formulario/>
     </div>
   );
 }
-
 export default App;
