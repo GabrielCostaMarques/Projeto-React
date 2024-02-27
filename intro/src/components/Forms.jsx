@@ -1,17 +1,43 @@
+
+import { useState } from "react"
+
+
+
 export default function Form() {
-    const cadastrarUser=(e)=>{
+    const cadastrarUser = (e) => {
 
         //evento  para a página não fazer o reload quando mandar o forms
+        alert("Usuário cadastrado")
         e.preventDefault()
+        console.log(`O usuário: ${name} cadastrou a senha ${password}`);
     }
 
-    alert("Usuário cadastrado")
+    const [name, setName] = useState("")
+    const [password, setPassword] = useState("")
+
     return (
         <>
             <h1>Meu cadastro</h1>
             <form onSubmit={cadastrarUser}>
                 <div>
-                    <input type="text" placeholder="Digite seu Nome" />
+                    <label htmlFor="name"></label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Digite seu Nome"
+                        onChange={(e) => setName(e.target.value)}
+                    />
+
+                </div>
+
+                <div>
+                    <input
+                        type="text"
+                        id="password"
+                        name="password"
+                        placeholder="Digite sua Senha" 
+                        onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div>
                     <input type="submit" value='Cadastrar' />
