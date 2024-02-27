@@ -1,0 +1,10 @@
+body{
+  padding: 50px;
+  background-color: gray;
+  padding-bottom: 500px;
+}
+
+p{
+  padding: 10px;
+  background-color: red;
+}
