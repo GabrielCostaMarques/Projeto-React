@@ -9,7 +9,7 @@ export default function Form() {
         //evento  para a página não fazer o reload quando mandar o forms
         alert("Usuário cadastrado")
         e.preventDefault()
-        console.log(`O usuário: ${name} cadastrou a senha ${password}`);
+        console.log(`The user: ${name} Sign ou your password ${password}`);
     }
 
     const [name, setName] = useState("")
@@ -25,7 +25,7 @@ export default function Form() {
                         type="text"
                         id="name"
                         name="name"
-                        placeholder="Digite seu Nome"
+                        placeholder="Type it your name"
                         onChange={(e) => setName(e.target.value)}
                     />
 
