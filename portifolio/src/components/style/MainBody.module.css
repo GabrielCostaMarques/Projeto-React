@@ -1,0 +1,49 @@
+section{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    
+}
+
+.MainBodyContent_left,.MainBodyContent_right{
+    width: 50%;
+    
+}
+
+.MainBodyContent_left{
+    padding: 0 0 0 150px;
+    
+}
+.ContentButtonMain{
+    margin:50px 0 0 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.ContentButtonMain button{
+    margin-right: 20px;
+}
+
+.MainBodyContent_right{
+    display: flex;
+    justify-content: center;
+}
+.MainBodyContent_right img{
+    width: 400px;
+    height: 500px;
+}
+
+.slideInUp {
+    opacity: 0;
+    animation: slideInUp 1.5s forwards;
+  }
+  
+  @keyframes slideInUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
