@@ -7,13 +7,12 @@ export default function Header(){
         <header>
 
             <div className={styles.headerContent}>
-                <ul>
-                    <li><a href="#overview">Overview</a></li>
-                    <li><a href="#experiencias">Experiências</a></li>
-                    <li><a href="#teste">TESTE</a></li>
-                    <li><a href="#TESTE1">TESTE1</a></li>
-                    
-                </ul>
+                <nav>
+                    <a href="#overview">Overview</a>
+                    <a href="#experiencias">Experiências</a>
+                    <a href="#teste">TESTE</a>
+                    <a href="#TESTE1">TESTE1</a>  
+                </nav>
             </div>
 
         </header>
