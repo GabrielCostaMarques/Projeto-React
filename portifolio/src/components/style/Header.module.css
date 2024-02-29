@@ -1,9 +1,12 @@
 .headerContent{
+    margin-top: -9px;
     padding-top: 50px;
     width: 100%;
     display: flex;
     background-color: rgba(0, 0, 0, 0);
     height: 150px;
+    position: fixed;
+    z-index: 10;
 }
 .headerContent nav{
       width: 100%;
