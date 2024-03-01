@@ -1,4 +1,4 @@
-section{
+.BodyMain{
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -40,6 +40,8 @@ section{
     opacity: 0;
     animation: slideInUp 1.5s forwards;
   }
+
+
   
   @keyframes slideInUp {
     from {
@@ -49,6 +51,22 @@ section{
       transform: translateY(0);
       opacity: 1;
     }
+  }
+
+
+  .icons{
+    cursor: pointer;
+    width: auto;
+    height: 40px;
+    transition: 0.5s;
+    color: var(---global-font-color);
+    margin-right: 37px;
+  }
+
+  .icons:hover{
+    color: var(---global-element-color);
+    transition: 0.5s;
+    scale: 1.05;
   }
 
   @media (max-width:768px) {

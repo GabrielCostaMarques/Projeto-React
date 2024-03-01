@@ -4,7 +4,7 @@ import style from './style/MainBody.module.css'
 
 export default function MainBody() {
     return (
-        <section>
+        <section className={style.BodyMain}>
             <div className={style.MainBodyContent_left}>
               <h1 className={style.slideInUp}>Hi,  </h1>
                 
