@@ -1,13 +1,14 @@
 import style from './style/MainBody.module.css';
-import { AiFillGithub,AiFillInstagram,AiFillLinkedin, AiFillFacebook   } from "react-icons/ai";
+import { AiFillGithub, AiFillInstagram, AiFillLinkedin, AiFillFacebook } from "react-icons/ai";
 
 
 
 export default function AboutMe() {
     return (
-        <section className={style.BodyMain}>
+        <section id='overview' className={style.BodyMain}>
+            
             <div className={style.MainBodyContent_right}>
-                <img src="./FotoPerfil-6.png" alt="Imagem de Perfil" />
+                <img src="./FotoAboutMe.png" alt="Imagem de Perfil" />
             </div>
             <div className={style.MainBodyContent_left}>
                 <h1 className={style.slideInUp}>About me</h1>
@@ -15,10 +16,10 @@ export default function AboutMe() {
                 <p className={style.slideInUp}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam esse aperiam sed aut atque! Veritatis ipsa, unde minima expedita fugit ad dicta neque cumque in perferendis voluptatem, eos ducimus rem.</p>
 
                 <div >
-                    <AiFillGithub className={style.icons}/>
-                    <AiFillInstagram className={style.icons}/>
-                    <AiFillLinkedin className={style.icons}/>
-                    <AiFillFacebook className={style.icons}/>
+                    <AiFillGithub className={style.icons} />
+                    <AiFillInstagram className={style.icons} />
+                    <AiFillLinkedin className={style.icons} />
+                    <AiFillFacebook className={style.icons} />
 
                 </div>
             </div>

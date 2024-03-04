@@ -19,7 +19,7 @@ export default function MainBody() {
             </div>
 
             <div className={style.MainBodyContent_right}>
-                <img src="./FotoPerfil-6.png" alt="Imagem de Perfil" />
+                <img src="./fotoPerfilPortifolio.png" alt="Imagem de Perfil" />
             </div>
         </section>
     )

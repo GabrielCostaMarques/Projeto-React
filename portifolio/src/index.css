@@ -2,7 +2,7 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  background-color: #1a1a1a;
+  ---global-body-color: #1a1a1a;
 
   ---global-font-color:#fff;
   ---global-element-color:#3b9aff;
@@ -10,8 +10,19 @@
 
 }
 
+body{
+  margin: 0 !important;
+}
+
+/* .darkMode{
+  ---global-font-color:#1a1a1a;
+  ---global-body-color: #fff;
+} */
+
 section{
   padding-top: 15em;
+  margin: 0;
+  background-color: var(---global-body-color)
 }
 
 h1,h2,h3,h4,h5,p,a {
