@@ -4,6 +4,7 @@ import Pessoa from './components/Pessoa';
 import List from './components/List';
 import Events from './components/Events'
 import Forms  from './components/Forms'
+import Conditional from "./components/Conditional";
 
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
             <List/>
             <Events numero={9}/>
             <Forms/>
+            <Conditional/>
            
         </div>
 

@@ -1,13 +1,22 @@
-export default function Event({numero}){
+
+import Button from "./EventsComponents/Button";
+
+export default function Event(){
 
     const myEvent=()=>{
-        alert(`Event actived! ${numero}`);
+        alert(`Event actived!`);
+    }
+
+    const secondEvent=()=>{
+        return alert(`Event actived! 2`);
+        
     }
 
     return(
 <>
         <p>Clique para disparar um evento</p>
-        <button onClick={myEvent}>Ativar!</button>
+        <Button event={myEvent} text="Primeiro evento"/>
+        <Button event={secondEvent} text="Segundo evento"/>
 </>
 
     )
