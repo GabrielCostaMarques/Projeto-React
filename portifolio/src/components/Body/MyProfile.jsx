@@ -1,5 +1,5 @@
 
-import style from './style/MyProfile.module.css'
+import style from '../style/MyProfile.module.css'
 
 
 export default function MyProfile() {

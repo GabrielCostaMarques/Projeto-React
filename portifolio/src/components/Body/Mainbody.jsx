@@ -1,4 +1,4 @@
-import style from './style/MainBody.module.css'
+import style from '../style/MainBody.module.css'
 
 
 

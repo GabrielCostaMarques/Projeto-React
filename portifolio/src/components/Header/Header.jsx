@@ -1,17 +1,17 @@
-import styles from './style/Header.module.css'
+import styles from '../style/Header.module.css'
 
 
 
 export default function Header(){
-    const themeChange=()=>{
-        var toggle= document.getElementById("toggle");
+    // const themeChange=()=>{
+    //     var toggle= document.getElementById("toggle");
 
-        if (toggle.checked) {
-            var bodyColor= document.getElementById('root');
-            bodyColor.classList.add("darkMode")
-        }
-    }
-    themeChange()
+    //     if (toggle.checked) {
+    //         var bodyColor= document.getElementById('root');
+    //         bodyColor.classList.add("darkMode")
+    //     }
+    // }
+    // themeChange()
     return(
         <header>
                 
@@ -20,9 +20,9 @@ export default function Header(){
                     <a href="#overview">OVERVIEW</a>
                     <a href="#projetos">PROJETOS</a>
 
-                    <div className='' >
+                    {/* <div className='' >
                         <input type="checkbox" name="toggleColor" id="toggle" />
-                    </div>
+                    </div> */}
                 </nav>
             </div>
         </header>
