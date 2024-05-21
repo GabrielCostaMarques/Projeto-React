@@ -1,12 +1,12 @@
-import { useState,useRef } from "react"
+import { useState, useRef } from "react"
 import "./GameScreen.css"
 
 const GameScreen = ({ verify, pickedWord, pickedcategory, letterGame, guessedLetter, wrongLetter, guesses, score }) => {
 
-  const [letterInput, setLetterInput]=useState("")
+  const [letterInput, setLetterInput] = useState("")
 
   //usando o useRef para que sempre o usuário submeter o form, ele nao precise clicar novamente, e sim o campo ja ficar com o foco 
-  const letterInputRef=useRef(null)
+  const letterInputRef = useRef(null)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -17,7 +17,7 @@ const GameScreen = ({ verify, pickedWord, pickedcategory, letterGame, guessedLet
     letterInputRef.current.focus()
 
   }
-  
+
 
   return (
     <div>
@@ -30,10 +30,10 @@ const GameScreen = ({ verify, pickedWord, pickedcategory, letterGame, guessedLet
         <p>Você ainda tem {guesses} tentativas</p>
 
         <div className="wordContainer">
-          {letterGame.map((letter,i)=>
-            guessedLetter.includes(letter)?(
+          {letterGame.map((letter, i) =>
+            guessedLetter.includes(letter) ? (
               <span key={i} className="letter">{letter}</span>
-            ):(
+            ) : (
               <span key={i} className="blackSquare"></span>
             )
           )}
@@ -42,23 +42,23 @@ const GameScreen = ({ verify, pickedWord, pickedcategory, letterGame, guessedLet
       <div className="letterContainer">
         <p>Tente adivinhas uam letra da palavra:</p>
         <form onSubmit={handleSubmit}>
-          <input 
-          type="text" 
-          name="letter"
-          maxLength="1" 
-          required 
-          onChange={(e)=>{setLetterInput(e.target.value)}} 
-          value={letterInput}
+          <input
+            type="text"
+            name="letter"
+            maxLength="1"
+            required
+            onChange={(e) => { setLetterInput(e.target.value) }}
+            value={letterInput}
 
-          // setando a referencia de onde quero que fiquei o focus
-          ref={letterInputRef}/>
+            // setando a referencia de onde quero que fiquei o focus
+            ref={letterInputRef} />
           <button>Jogar</button>
         </form>
       </div>
       <div className="wrongLettersContainer">
         <p>Letras Ja utilizadas</p>
-        {wrongLetter.map((letter,i)=>(
-            <span key={i}>{letter},</span>
+        {wrongLetter.map((letter, i) => (
+          <span key={i}>{letter},</span>
         ))}
       </div>
     </div>

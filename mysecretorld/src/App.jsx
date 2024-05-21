@@ -16,6 +16,7 @@ const stages = [
   { id: 3, name: "end" }
 ]
 
+const QtdGuesses=3
 
 function App() {
 
@@ -25,13 +26,14 @@ function App() {
   const [pickedWord, setPickedWord] = useState("")
   const [pickedCategory, setPickedCategory] = useState("")
   const [letters, setLetters] = useState([])
-  const [guessedLetter, setGuessedLetters]=useState([])
-  const [wrongLetter, setWrongLetters]=useState([])
-  const [guesses, setGuesses]=useState(3)
-  const [score, setScore]=useState(0)
+  const [guessedLetter, setGuessedLetters] = useState([])
+  const [wrongLetter, setWrongLetters] = useState([])
+  const [guesses, setGuesses] = useState(QtdGuesses)
+  const [score, setScore] = useState(0)
 
 
-  const pickWordAndCategory = () => {
+  // tivemos o mesmo problema aqui colocando essa função no useCallback, entao vamos implementar o useCallback aqui tbm e colocar a "words" por conta dela ser fundamental a função
+  const pickWordAndCategory =useCallback( () => {
 
     // Pegando uma categoria aleatória
 
@@ -46,68 +48,107 @@ function App() {
     // pegando uma palavra aleatória da categoria
     const word = words[category][Math.floor(Math.random() * words[category].length)]
 
-    return {word, category}
-  }
+    return { word, category }
+  },[words])
 
-  const startGame = () => {
-    const {word,category}=pickWordAndCategory()
+  // usamos o useCallback por conta que a função startGame está dependente/monitorado de um useEffect e isso nao é permitido
+  //teremos um erro no useCallback por conta de falta de dependencias, entao vamos colocar uma função fundamental nela usando o [pickWordAndCategory]
+  const startGame =useCallback( () => {
+    const { word, category } = pickWordAndCategory()
     //separando as palavras em lista e letras e mapeando cada letra para tornar ela minúscula
-    let letterGame=word.split("");
-    letterGame=letterGame.map((l)=>l.toLowerCase())
+    clearLetterStates()
+    let letterGame = word.split("");
+    letterGame = letterGame.map((l) => l.toLowerCase())
     console.log(letterGame);
+
     setPickedWord(word)
     setPickedCategory(category)
     setLetters(letterGame)
     setGameStage(stages[1].name)
-  }
+  },[pickWordAndCategory])
 
   const verifyLetter = (letter) => {
     // padronizando a letra
-    const normalizedLetter=letter.toLowerCase()
+    const normalizedLetter = letter.toLowerCase()
 
-    // checando se a letra ja foi usada
-    if(guessedLetter.includes(normalizedLetter)|| wrongLetter.includes(normalizedLetter)){
+    // checando se a letra ja foi usada e retornando ela mesma
+    if (guessedLetter.includes(normalizedLetter) || wrongLetter.includes(normalizedLetter)) {
       return;
     }
 
     // mandando a letra adivinhada ou removendo as chances
-    if(letters.includes(normalizedLetter)){
+    if (letters.includes(normalizedLetter)) {
       //obj é o "actualGuessedLetters" entao eu seto a setGuessedLetters para esse obj. e assim usando o "..." eu pego toda a lista e complemento com o normalizedLetter
-      setGuessedLetters((actualGuessedLetters)=>[
-        ...actualGuessedLetters,normalizedLetter
+      setGuessedLetters((actualGuessedLetters) => [
+        ...actualGuessedLetters, normalizedLetter
       ])
-    }else{
+    } else {
       //obj é o "actualWrongLetters" entao eu seto a setGuessedLetters para esse obj. e assim usando o "..." eu pego toda a lista e complemento com o normalizedLetter
-      setWrongLetters((actualWrongLetters)=>[
-        ...actualWrongLetters,normalizedLetter
+      setWrongLetters((actualWrongLetters) => [
+        ...actualWrongLetters, normalizedLetter
       ])
+
+      // diminuindo as tentativas
+      setGuesses((actualGuesses)=>actualGuesses-1)
     }
-
-    console.log(guessedLetter);
-    console.log(wrongLetter);
-
-
-
   }
+
+  const clearLetterStates=()=>{
+    setGuessedLetters([])
+    setWrongLetters([])
+  }
+// usando o useEffect para monitoriar o dado de guesses  em condição de derrota
+  useEffect(()=>{
+    if (guesses<=0) {
+      // reset all states
+
+      clearLetterStates()
+
+      setGameStage(stages[2].name)
+    }
+  }, [guesses])
+
+  // checkar a condição de vitória
+useEffect(()=>{
+
+  //varivale de letras unicas para fazer a verificação se oque o usuário digitou foi igual a palavra, sem precisar verificar a mesma letra duas vezes
+
+  const uniqueLetters=[... new Set(letters)]
+
+  if (guessedLetter.length===uniqueLetters.length) {
+      setScore((actualScore)=>(actualScore+=100))
+
+      //adicionando pontos e começando o jogo de novo
+      startGame();
+  }
+
+  console.log(uniqueLetters); //verificação ['g', 'a', 'b', 'i', 'n', 'e', 't']
+  console.log(guessedLetter);// oq exatamente o usuário digitou ['g', 'a', 'b', 'i', 'n', 'e', 't']
+
+}, [guessedLetter,letters,startGame])
+
   const retryGame = () => {
+    setScore(0)
+    setGuesses(QtdGuesses)
+
     setGameStage(stages[0].name)
   }
 
   return (
     <div>
       {gameStage === 'start' && <StartScreen startGame={startGame} />}
-      {gameStage === 'game' && <GameScreen 
-      verify={verifyLetter} 
-      pickedWord={pickedWord}
-      pickedcategory={pickedCategory}
-      letterGame={letters}
-      guessedLetter={guessedLetter}
-      wrongLetter={wrongLetter}
-      guesses={guesses}
-      score={score}
-      
+      {gameStage === 'game' && <GameScreen
+        verify={verifyLetter}
+        pickedWord={pickedWord}
+        pickedcategory={pickedCategory}
+        letterGame={letters}
+        guessedLetter={guessedLetter}
+        wrongLetter={wrongLetter}
+        guesses={guesses}
+        score={score}
+
       />}
-      {gameStage === 'end' && <GameOver retryGame={retryGame} />}
+      {gameStage === 'end' && <GameOver retryGame={retryGame} score={score}/>}
     </div>
   )
 }
