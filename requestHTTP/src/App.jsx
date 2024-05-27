@@ -43,8 +43,7 @@ function App() {
       //definindo o corpo da requisição, transformando ele em JSON
       body:JSON.stringify(product)
     })
-
-
+    
     
     // const addProduct
 
