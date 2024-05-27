@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { useFetch } from './hooks/useFetch'
 
 import './App.css'
 
@@ -8,18 +9,26 @@ function App() {
 
   const [products, setProducts] = useState([])
 
+  //custom hook
+
+  //renomeando "data" para "items"
+  const {data:items,httpConfig}=useFetch(URL)
+
+
   const [name, setName] = useState("")
   const [price, setPrice] = useState("")
 
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch(URL);
-      const data = await res.json();
-      setProducts(data)
-    }
+  //useEffect comentado porque estou usando custom hook UseFetch
 
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const res = await fetch(URL);
+  //     const data = await res.json();
+  //     setProducts(data)
+  //   }
+
+  //   fetchData();
+  // }, []);
 
   //add procuts
 
@@ -31,28 +40,34 @@ function App() {
       price,
     }
 
-    //fazendo um post 
-    const res=await fetch(URL,{
-      //temos de escolher nosso método
-      method:"POST",
-      //cabeçalho da requisição, qual tipo de conteúdo que estamos enviando
-      headers:{
-        "Content-Type":"application/json"
-      },
+    // //fazendo um post 
+    // const res=await fetch(URL,{
+    //   //temos de escolher nosso método
+    //   method:"POST",
+    //   //cabeçalho da requisição, qual tipo de conteúdo que estamos enviando
+    //   headers:{
+    //     "Content-Type":"application/json"
+    //   },
 
-      //definindo o corpo da requisição, transformando ele em JSON
-      body:JSON.stringify(product)
-    })
-    
-    
-    // const addProduct
+    //   //definindo o corpo da requisição, transformando ele em JSON
+    //   body:JSON.stringify(product)
+    // });
 
+    // //carregamento dinâmico
+    // //setando todos os produtos + o produto adicionado com "..."
+    // const addProduct = await res.json()
+    // setProducts((prevProducts)=>[...prevProducts,addProduct])
+    
+    httpConfig(product,"POST")
+
+    setName("")
+    setPrice("")
   }
   return (
     <>
       <p>Lista de Produto</p>
       <ul>
-        {products.map((product) => (
+        {items &&items.map((product) => (
           <li key={product.id}>
             {product.name} - R$: {product.price}
           </li>
