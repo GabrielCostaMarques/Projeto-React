@@ -1,0 +1,30 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Smartphone XYZ",
+        "price": 1999.99
+      },
+      {
+        "id": 2,
+        "name": "Notebook ABC",
+        "price": 4999.99
+      },
+      {
+        "id": 3,
+        "name": "Fone de Ouvido DEF",
+        "price": 299.99
+      },
+      {
+        "id": 4,
+        "name": "Smartwatch GHI",
+        "price": 999.99
+      },
+      {
+        "id": 5,
+        "name": "Câmera Digital JKL",
+        "price": 2499.99
+      }
+    ]
+  }
+  
