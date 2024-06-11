@@ -1,6 +1,6 @@
 import './App.css'
 
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route,Navigate} from 'react-router-dom'
 import Home from './page/Home'
 import About from './page/About'
 import NavBar from './components/NavBar'
@@ -31,6 +31,8 @@ function App() {
           <Route path="/search" element={<Search/>}/>
           {/* set no match route */}
           <Route path="*" element={<NotFound/>}/>
+          {/*redirect route */}
+          <Route path="company" element={<Navigate to='/about'/>}/>
         </Routes>
       </BrowserRouter>
     </>

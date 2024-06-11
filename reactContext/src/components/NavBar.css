@@ -1,0 +1,7 @@
+.navbar{
+    justify-content: space-around;
+    display: flex;
+    width: 500px;
+    padding-bottom: 300px;
+
+}
