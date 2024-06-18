@@ -7,6 +7,20 @@ export const TitleColorContextProvider = ({children}) => {
 
   const titleColorReducer = (state,action)=>{
 
+    //switch para aplicar função
+
+    switch (action.type) {
+      case "RED":
+        return{...state,color:"red"};
+      case "BLUE":
+        return{...state,color:"blue"};
+      case "GREEN":
+        return{...state,color:"green"};
+      default:
+        return state
+     
+    }
+
   }
   //usando o useReducer
   // temos como o "state" pegando o estado das constantes e o "dispatch" sendo a função que troca o contexto
@@ -16,7 +30,7 @@ export const TitleColorContextProvider = ({children}) => {
     console.log("Situação do state",state );
   return (
     //Colocando o value no provider para que os componentes que estiverem dentro do provider poder acessar td do value
-    <TitleColorContext.Provider value={{...state}}>
+    <TitleColorContext.Provider value={{...state,dispatch}}>
         {children}
     </TitleColorContext.Provider>
   )
