@@ -8,6 +8,7 @@
       {
         "id": 2,
         "name": "Notebook ABC",
+        "img":"/vite.svg",
         "price": 4999.99
       },
       {
