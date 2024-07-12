@@ -19,14 +19,12 @@ import CreatPost from './pages/CreatePost/CreatPost'
 
 
 function App() {
-
   const [user,setUser]=useState(undefined)
   const {auth}=useAuthentication()
 
 
   //segmentação para que quando o usuário estiver carregando, nada do blog carregue antes de o user receber alguma info
   const loadingUser=user===undefined
-
   useEffect(()=>{
     onAuthStateChanged(auth,(user)=>{
       setUser(user)
@@ -43,17 +41,18 @@ function App() {
 
   return (
     <div className='App'>
-      <AuthProvider value={user}>
+      <AuthProvider value={{user}}>
         <BrowserRouter>
           <Navbar />
           <div className='container'>
             <Routes>
               <Route path="/" element={<Home />}></Route>
               <Route path="/about" element={<About />}></Route>
+              {/* Verificando se o usuário está logado ou nao, ambos casos mandamos o encaminhamento */}
               <Route path="/login" element={!user?<Login />:<Navigate to="/"/>}></Route>
-              <Route path="/register" element={<Register />}></Route>
-              <Route path="/dashboard" element={<Dahsboard />}></Route>
-              <Route path="/posts/create" element={<CreatPost />}></Route>
+              <Route path="/register" element={!user?<Register />:<Navigate to="/"/>}></Route>
+              <Route path="/dashboard" element={user?<Dahsboard />:<Navigate to="/login"/>}></Route>
+              <Route path="/posts/create" element={user?<CreatPost />:<Navigate to="/login"/>}></Route>
             </Routes>
           </div>
           <Footer />

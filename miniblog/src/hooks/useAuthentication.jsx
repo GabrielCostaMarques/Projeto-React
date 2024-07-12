@@ -3,8 +3,9 @@ import { db } from '../firebase/config'
 import {
     getAuth,
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
+    // signInWithEmailAndPassword,
     updateProfile,
+    signOut
 } from 'firebase/auth'
 
 import { useState, useEffect } from 'react'
@@ -21,17 +22,20 @@ export const useAuthentication = () => {
 
     const auth = getAuth()
 
+    //funcao para checar o clean de de memoria
     function checkIfIsCancelled() {
         if (cancelled) {
             return;
         }
     }
-
+    
+    //criando usuário
     const createUser = async (data) => {
         checkIfIsCancelled()
         setLoading(true)
         setError("")
 
+        
         try {
             const { user } = await createUserWithEmailAndPassword(
                 auth,
@@ -61,12 +65,16 @@ export const useAuthentication = () => {
             setError(systemErrorMessage)
             
         }
-
         
     };
+
+ const logout=()=>{
+    signOut(auth)
+    checkIfIsCancelled()
+ }
 
     useEffect(() => {
         return () => { setCancelled(true) }
     }, [])
-    return { auth, createUser, error, loading }
+    return { auth, createUser, error, loading,logout}
 }
