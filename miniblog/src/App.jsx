@@ -20,13 +20,13 @@ import CreatPost from './pages/CreatePost/CreatPost'
 
 function App() {
   const [user,setUser]=useState(undefined)
-  const {auth}=useAuthentication()
+  const {auth}=useAuthentication()  
 
 
   //segmentação para que quando o usuário estiver carregando, nada do blog carregue antes de o user receber alguma info
   const loadingUser=user===undefined
   useEffect(()=>{
-    onAuthStateChanged(auth,(user)=>{
+    onAuthStateChanged(auth,(user)=>{ 
       setUser(user)
     })
   },[auth])
