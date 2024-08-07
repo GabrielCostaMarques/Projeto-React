@@ -28,6 +28,7 @@ function App() {
   useEffect(()=>{
     onAuthStateChanged(auth,(user)=>{ 
       setUser(user)
+      
     })
   },[auth])
 
