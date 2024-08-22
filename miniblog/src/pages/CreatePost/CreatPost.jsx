@@ -5,6 +5,8 @@ import { useAuthValue } from '../../context/authContext'
 import { useInsertDocument } from '../../hooks/useInsertDocument'
 
 
+
+
 const CreatPost = () => {
 
   const [title, setTitle] = useState("")
@@ -13,10 +15,13 @@ const CreatPost = () => {
   const [tags, setTags] = useState("")
   const [formError, setFormError] = useState("")
 
- // const navigate=useNavigate()
+
   const { user } = useAuthValue()
-  const { insertDocument, response } = useInsertDocument("post")
+
+  const { insertDocument, response } = useInsertDocument("posts")
+
   const navigate = useNavigate()
+
   const handleSubmit = (e) => {
     e.preventDefault()
     setFormError("")

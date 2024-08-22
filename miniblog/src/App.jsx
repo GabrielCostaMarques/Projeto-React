@@ -6,6 +6,10 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
+import Dahsboard from './pages/Dashboard/Dahsboard'
+import CreatPost from './pages/CreatePost/CreatPost'
+import Search from './pages/Search/Search'
+import Post from './pages/Post/Post'
 
 import { useState,useEffect } from 'react'
 import { useAuthentication } from './hooks/useAuthentication'
@@ -14,8 +18,6 @@ import { useAuthentication } from './hooks/useAuthentication'
 import { onAuthStateChanged } from 'firebase/auth'
 
 import { AuthProvider } from './context/authContext'
-import Dahsboard from './pages/Dashboard/Dahsboard'
-import CreatPost from './pages/CreatePost/CreatPost'
 
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
 
   //segmentação para que quando o usuário estiver carregando, nada do blog carregue antes de o user receber alguma info
   const loadingUser=user===undefined
+  
   useEffect(()=>{
     onAuthStateChanged(auth,(user)=>{ 
       setUser(user)
@@ -49,6 +52,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />}></Route>
               <Route path="/about" element={<About />}></Route>
+              <Route path="/search" element={<Search />}></Route>
+              <Route path="/posts/:id" element={<Post />}></Route>
               {/* Verificando se o usuário está logado ou nao, ambos casos mandamos o encaminhamento */}
               <Route path="/login" element={!user?<Login />:<Navigate to="/"/>}></Route>
               <Route path="/register" element={!user?<Register />:<Navigate to="/"/>}></Route>

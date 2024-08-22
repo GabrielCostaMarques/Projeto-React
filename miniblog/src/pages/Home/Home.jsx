@@ -7,17 +7,23 @@ import { useState } from 'react';
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 
 //components
+import PostDetails from '../../components/PostDetails';
 
 
 const Home = () => {
 
   const [query, setQuery] = useState("")
-  const {documents:posts,loading}=useFetchDocuments("post")
-
+  const { documents: posts, loading } = useFetchDocuments("posts")
+  const navigate=useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    
+    if (query) {
+      return navigate(`/search?q=${query}`)
+    }
   }
-  
+
   return (
     <div className={styles.home}>
       <h1>Veja os nossos Posts mais recentes</h1>
@@ -28,11 +34,11 @@ const Home = () => {
           onChange={(e) => setQuery(e.target.value)}
           value={query}
         />
-        <button className="btn btn-dark">Pesquisar</button>
+        <button className="btn btn-dark" onClick={handleSubmit}>Pesquisar</button>
       </form>
       <div>
         {loading && <p>Carregando...</p>}
-       { posts && posts.map((post)=> <h3>{post.title}</h3>)}
+        {posts && posts.map((post) =><PostDetails key={post.id} post={post}/>)}
         {posts && posts.length === 0 && (
           <div className={styles.noposts}>
             <p>Não foram encontrados posts</p>
