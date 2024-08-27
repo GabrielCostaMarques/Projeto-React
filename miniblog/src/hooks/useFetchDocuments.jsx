@@ -5,7 +5,7 @@ import { collection, query, orderBy, onSnapshot, where } from "firebase/firestor
 
 
 export const useFetchDocuments = (docColletion, search = null, uid = null) => {
-    const [documents, setDocuments] = useState([])
+    const [documents, setDocuments] = useState(null)
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(null)
     const [cancelled, setCancelled] = useState(false)
@@ -23,6 +23,8 @@ export const useFetchDocuments = (docColletion, search = null, uid = null) => {
 
                 if (search) {
                     q = await query(collectionRef, where("tagsArray", "array-contains", search), orderBy("createdAt", "desc"));
+                }else if (uid) {
+                    q = await query(collectionRef, where("uid", "==", uid), orderBy("createdAt", "desc"));
                 } else {
                     q = await query(collectionRef, orderBy("createdAt", "desc"));
                 }
@@ -47,7 +49,7 @@ export const useFetchDocuments = (docColletion, search = null, uid = null) => {
             }
         }
         loadData()
-    }, [docColletion, search, uid, cancelled, documents])
+    }, [docColletion, search, uid, cancelled])
 
     useEffect(() => {
         return () => setCancelled(true)

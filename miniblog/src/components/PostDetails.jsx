@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import styles from './PostDetails.module.css'
 
 const PostDetails = ({ post }) => {
+
+  console.log(post)
   return (
     <div className={styles.post_detail}>
       <img src={post.image} alt={post.title} />
