@@ -10,6 +10,7 @@ import Dahsboard from './pages/Dashboard/Dahsboard'
 import CreatPost from './pages/CreatePost/CreatPost'
 import Search from './pages/Search/Search'
 import Post from './pages/Post/Post'
+import EditPost from './pages/EditPost/EditPost'
 
 import { useState,useEffect } from 'react'
 import { useAuthentication } from './hooks/useAuthentication'
@@ -57,6 +58,8 @@ function App() {
               {/* Verificando se o usuário está logado ou nao, ambos casos mandamos o encaminhamento */}
               <Route path="/login" element={!user?<Login />:<Navigate to="/"/>}></Route>
               <Route path="/register" element={!user?<Register />:<Navigate to="/"/>}></Route>
+              <Route path="/posts/edit/:id" element={user?<EditPost />:<Navigate to="/login"/>}></Route>
+              
               <Route path="/dashboard" element={user?<Dahsboard />:<Navigate to="/login"/>}></Route>
               <Route path="/posts/create" element={user?<CreatPost />:<Navigate to="/login"/>}></Route>
             </Routes>
