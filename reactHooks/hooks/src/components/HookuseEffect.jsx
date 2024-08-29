@@ -34,14 +34,14 @@ const HookuseEffect = () => {
     
     
     useEffect(()=>{
-      const timer=setTimeout(() => {
-        console.log("helloword");
-        setAnotherNumber(anotherNumber+1)
-      }, 2000);
+      // const timer=setTimeout(() => {
+      //   console.log("helloword");
+      //  // setAnotherNumber(anotherNumber+1)
+      // }, 2000);
     
-      return()=>clearTimeout(timer)
+      // return()=>clearTimeout(timer)
+
       
-    
 },[anotherNumber])
 
   return (
