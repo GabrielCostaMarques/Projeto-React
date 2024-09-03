@@ -21,6 +21,29 @@ const app=express()
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
+//Solve CORS - quando executamos requisições pelo mesmo domínio
+app.use(cors({credentials:true,origin:"http://localhost:3000"}))
+
+
+//Upload Directory
+
+app.use("/uploads", express.static(path.join(__dirname,"/uploads")))
+ 
+
+//DB Connection
+require("./config/db.js")
+
+//routes
+
+const router=require("./routes/Routes")
+app.use(router)
+
+
+//test router
+
+router.get("/",(req,res)=>{
+    res.send("API Working!")
+})
 
 app.listen(port,()=>{
     console.log(`App rodando na porta ${port}`);
